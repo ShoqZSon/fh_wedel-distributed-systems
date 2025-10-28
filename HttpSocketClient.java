@@ -3,8 +3,8 @@ import java.net.Socket;
 
 public class HttpSocketClient {
     public static void main(String[] args) throws IOException {
-        String host = "www.fh-wedel.de";
-        int port = 80;
+        String host = "localhost";
+        int port = 8080;
 
         try (Socket socket = new Socket(host, port);
              PrintWriter out = new PrintWriter(socket.getOutputStream());
