@@ -1,10 +1,10 @@
 import java.io.*;
 import java.net.*;
 
-public class ClientHandler implements Runnable{
+public class HttpClientHandler implements Runnable{
     private final Socket clientSocket;
 
-    public ClientHandler(Socket socket) {
+    public HttpClientHandler(Socket socket) {
         this.clientSocket = socket;
     }
 

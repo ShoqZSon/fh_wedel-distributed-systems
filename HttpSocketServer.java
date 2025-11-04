@@ -10,7 +10,7 @@ public class HttpSocketServer {
         // Open a thread everytime a new connection is made
         while (true) {
             Socket clientSocket = serverSocket.accept();
-            new Thread(new ClientHandler(clientSocket)).start();
+            new Thread(new HttpClientHandler(clientSocket)).start();
         }
     }
 }
