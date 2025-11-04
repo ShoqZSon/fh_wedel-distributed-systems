@@ -1,3 +1,4 @@
+import logserver.LogMessageOuterClass;
 import logserver.LogMessageOuterClass.LogMessage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,7 +26,7 @@ public class LogSocketServer {
 // Client handler for each connection
 class LogClientHandler implements Runnable {
     private final Socket clientSocket;
-    private static final Path LOG_FILE = Path.of("logs.txt"); // output file
+    private final Path LOG_FILE = Path.of("logs.txt");
 
     public LogClientHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
@@ -39,19 +40,23 @@ class LogClientHandler implements Runnable {
 
             // Print out the client message
             if (logMessage != null) {
+                long timestamp = logMessage.getTimestamp();
+                String source = logMessage.getSource();
+                LogMessageOuterClass.SeverityLevel severity = logMessage.getSeverity();
+                String message = logMessage.getMessage();
                 System.out.println("Received log:");
-                System.out.println("Timestamp: " + logMessage.getTimestamp());
-                System.out.println("Source: " + logMessage.getSource());
-                System.out.println("Severity: " + logMessage.getSeverity());
-                System.out.println("Message: " + logMessage.getMessage());
+                System.out.println("Timestamp: " + timestamp);
+                System.out.println("Source: " + source);
+                System.out.println("Severity: " + severity);
+                System.out.println("Message: " + message);
 
 
                 String logEntry = String.format(
                         "[%d] [%s] [%s]: %s%n",
-                        logMessage.getTimestamp(),
-                        logMessage.getSource(),
-                        logMessage.getSeverity(),
-                        logMessage.getMessage()
+                        timestamp,
+                        source,
+                        severity,
+                        message
                 );
 
                 // Append to file in a thread-safe way
