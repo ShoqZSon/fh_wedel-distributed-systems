@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+
+package database;
+
+
+service Database {
+    rpc GetRecord (GetRecordRequest) returns (GetRecordResponse) {}
+    rpc AddRecord (AddRecordRequest) returns (AddRecordResponse) {}
+    rpc GetSize (GetSizeRequest) returns (GetSizeResponse) {}
+}
+
+
+message GetRecordRequest {
+    int32 index = 1;
+}
+message GetRecordResponse {
+    string value = 1;
+    bool found = 2;
+}
+
+
+message AddRecordRequest {
+    int32 index = 1;
+    string value = 2;
+}
+message AddRecordResponse {
+    bool ok = 1;
+}
+
+
+message GetSizeRequest {}
+message GetSizeResponse {
+int32 size = 1;
+}
