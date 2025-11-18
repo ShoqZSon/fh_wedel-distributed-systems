@@ -13,7 +13,7 @@ public class DatabaseClientJsonRpc {
              BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
              PrintWriter out = new PrintWriter(s.getOutputStream(), true)) {
 
-            // 1Add records
+            // Add records
             int[] keys = {4101, 4102, 4103, 4104, 4105, 4106};
             String[] vals = {"Appen", "Ahrensburg", "Wedel", "Aumühle", "Seevetal", "Quickborn"};
 

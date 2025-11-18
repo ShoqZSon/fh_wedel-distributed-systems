@@ -57,8 +57,8 @@ public class DatabaseServerJsonRpc {
 
                     default -> resp = new JsonRpcResponse(req.id, "Unknown method", -32601);
                 }
-
                 out.println(JsonRpcCodec.encodeResponse(resp));
+                System.out.println("[DEBUG] Sent response with id: " + resp.id);
             }
 
         } catch (IOException e) {
