@@ -22,19 +22,14 @@ def run(host='localhost', port=9090):
         res = stub.AddRecord(req)
         print(f" AddRecord({idx}, {val!r}) -> ok={res.ok}")
 
-    print("\nReading record 4103...")
-    r = stub.GetRecord(Database_pb2.GetRecordRequest(index=4103))
-    if r.found:
-        print(f" GetRecord(4103) -> '{r.value}'")
-    else:
-        print(" GetRecord(4103) -> NOT FOUND")
-
-    print("\nReading record 4107 (should be missing)...")
-    r = stub.GetRecord(Database_pb2.GetRecordRequest(index=4107))
-    if r.found:
-        print(f" GetRecord(4107) -> '{r.value}'")
-    else:
-        print(" GetRecord(4107) -> NOT FOUND")
+    read_idx = [4103,4107]
+    for idx in read_idx:
+        print(f"\nReading record {idx}...")
+        r = stub.GetRecord(Database_pb2.GetRecordRequest(index=idx))
+        if r.found:
+            print(f" GetRecord({idx}) -> '{r.value}'")
+        else:
+            print(f" GetRecord({idx}) -> NOT FOUND")
 
     print("\nCalling GetSize()...")
     s = stub.GetSize(Database_pb2.GetSizeRequest())
