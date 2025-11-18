@@ -24,7 +24,11 @@ public class JsonRpcCodec {
         JsonObject obj = Json.createReader(new StringReader(json)).readObject();
         String method = obj.getString("method");
         int id = obj.getInt("id");
-        JsonObject params = obj.containsKey("params") ? obj.getJsonObject("params") : null;
+
+        JsonObject params = null;
+        if (obj.containsKey("params")) {
+            params = obj.getJsonObject("params");
+        }
 
         return new JsonRpcRequest(method, params, id);
     }
