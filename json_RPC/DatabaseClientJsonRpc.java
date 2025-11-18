@@ -13,7 +13,7 @@ public class DatabaseClientJsonRpc {
              BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
              PrintWriter out = new PrintWriter(s.getOutputStream(), true)) {
 
-            // 1️⃣ Add records
+            // 1Add records
             int[] keys = {4101, 4102, 4103, 4104, 4105, 4106};
             String[] vals = {"Appen", "Ahrensburg", "Wedel", "Aumühle", "Seevetal", "Quickborn"};
 
@@ -28,7 +28,7 @@ public class DatabaseClientJsonRpc {
                 System.out.println("Add: " + in.readLine());
             }
 
-            // 2️⃣ Read records
+            // Read records
             int[] read = {4103, 4107};
             for (int k : read) {
                 JsonRpcRequest req = new JsonRpcRequest(
@@ -40,7 +40,7 @@ public class DatabaseClientJsonRpc {
                 System.out.println("Get: " + in.readLine());
             }
 
-            // 3️⃣ DB size
+            // DB size
             JsonRpcRequest reqSize = new JsonRpcRequest(
                     "getSize",
                     Json.createObjectBuilder().build(),
