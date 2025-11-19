@@ -35,6 +35,11 @@ def run(host='localhost', port=9090):
     s = stub.GetSize(Database_pb2.GetSizeRequest())
     print(f" GetSize() -> {s.size}")
 
+    idx = 4107
+    val = "Pinneberg"
+    req = Database_pb2.AddRecordRequest(index=idx, value=val)
+    res = stub.AddRecord(req)
+    print(f" AddRecord({idx}, {val!r}) -> ok={res.ok}")
 
 if __name__ == '__main__':
     run()
