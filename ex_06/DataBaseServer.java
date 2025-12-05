@@ -9,14 +9,16 @@ import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
 
 public class DataBaseServer {
-    public void Main (String[] args) throws RemoteException, IOException{
-       String stubFileName = Config.STUB_FILE;;
+    public static void main(String[] args) throws RemoteException, IOException{
+       String stubFileName = Config.STUB_FILE;
 
         DataBaseImpl db = new DataBaseImpl();
         Remote stub = UnicastRemoteObject.exportObject(db, 0);
         writeStubToFile(stubFileName, stub);
     }
 
+    // Schreibt den Stub in eine serialisierte Datei
+    // Dient als Proxy für den Client damit dieser die Implementierung der DB nicht kennt
     private static void writeStubToFile(String fileName, Remote stub)
             throws FileNotFoundException, IOException {
         FileOutputStream fos = new FileOutputStream(fileName);
@@ -24,4 +26,6 @@ public class DataBaseServer {
         out.writeObject(stub);
         out.close();
     }
+
+
 }
