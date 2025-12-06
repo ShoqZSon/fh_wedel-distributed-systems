@@ -26,4 +26,27 @@ public class DataBaseImpl implements DataBase {
     public int getSize() throws RemoteException {
         return database.size();
     }
+
+    @Override
+    public int getIndex(String record) throws RemoteException {
+        for (Map.Entry<Integer, String> entry : database.entrySet()) {
+            if (entry.getValue().equals(record)) {
+                return entry.getKey();
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public DBResult getRecordObj(int index) throws RemoteException {
+        DBResult result = new DBResult();
+        if (database.containsKey(index)) {
+            result.setKey(index);
+            result.setValue(database.get(index));
+        } else {
+            result.setKey(-1);
+            result.setValue(null);
+        }
+        return result;
+    }
 }
