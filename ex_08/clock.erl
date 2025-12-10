@@ -4,12 +4,10 @@
 %%% @doc
 %%%
 %%% @end
-%%% Created : 07. Dez 2025 12:30
+%%% Created : 10. Dez 2025 17:28
 %%%-------------------------------------------------------------------
-% Erlang-Module in File beispiel.erl
+-module(clock).
+-author("hoeni").
 
--module(beispiel).
--export([double/1]).
-
-double(X) ->
-  2 * X.
+%% API
+-export([]).
